@@ -8,10 +8,10 @@ import math
 
 
 class BasePage:
-    def __init__(self, browser, url, timeout=10):
+    def __init__(self, browser, url, timeout=5):
         self.browser = browser
         self.url = url
-        # self.browser.implicitly_wait(timeout)
+        self.browser.implicitly_wait(timeout)
 
     def open(self):
         self.browser.get(self.url)
@@ -59,3 +59,10 @@ class BasePage:
         except TimeoutException:
             return False
         return True
+
+    def go_to_basket(self):
+        self.browser.find_element(*BasePageLocators.GO_TO_BASKET_BTN).click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                 " probably unauthorised user"

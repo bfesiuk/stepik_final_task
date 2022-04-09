@@ -9,7 +9,6 @@ class ProductPage(BasePage):
         self.add_product_to_basket()
         self.should_be_equal_name_on_product_page_and_in_basket()
         self.should_be_equal_price_on_product_page_and_in_basket()
-        self.should_disappeared_after_adding_product_to_basket()
 
     def add_product_to_basket(self):
         self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BTN).click()
